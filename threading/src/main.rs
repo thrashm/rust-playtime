@@ -1,31 +1,35 @@
 use std::{
     thread::{
         spawn,
-        sleep
+        sleep,
     },
-    time::Duration
+    time::Duration,
+    sync::mpsc::channel,
 };
 
 fn main() {
-    let mut blah = "blah";
-    let handle1 = spawn(move || {
-        sleep(Duration::from_millis(2000));
-        println!("{}", blah);
+    let (sender, receiver) = channel();
+
+    spawn(move || {
+        let val = String::from("!!!");
+        sleep(Duration::from_secs(2));
+        sender.send(Some(String::from("hi"))).unwrap();
+        sleep(Duration::from_secs(2));
+        sender.send(Some(String::from("nanners"))).unwrap();
+        sleep(Duration::from_secs(2));
+        sender.send(Some(val)).unwrap();
+        sender.send(None);
     });
-    blah = "fire";
 
-    let handle2 = spawn(|| {
-        sleep(Duration::from_millis(1000));
-        println!("Borg");
-    });
-
-    let handles = vec![handle1, handle2];
-
-    println!("{}",blah);
-
-    for handle in handles {
-       handle.join().unwrap(); 
+    'loopin: loop {
+        let receiver_result = receiver.recv();
+    
+        match receiver_result {
+            Ok(received) => match received {
+                Some(value) => println!("Get: {}", value),
+                None => break 'loopin,
+            },
+            Err(err) => eprint!("Error: {}", err),
+        }
     }
-
-    println!("Nya!");
 }
