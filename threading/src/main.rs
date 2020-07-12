@@ -18,7 +18,7 @@ fn main() {
         sender.send(Some(String::from("nanners"))).unwrap();
         sleep(Duration::from_secs(2));
         sender.send(Some(val)).unwrap();
-        sender.send(None);
+        sender.send(None).unwrap();
     });
 
     'loopin: loop {
