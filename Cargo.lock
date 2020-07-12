@@ -11,3 +11,7 @@ dependencies = [
  "greeter 0.1.0",
 ]
 
+[[package]]
+name = "threading"
+version = "0.1.0"
+

@@ -9,3 +9,8 @@ Run test for greeter
 ```
 cargo test -p greeter
 ```
+
+Run threading
+```
+cargo run -p threading
+```
