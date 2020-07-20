@@ -14,3 +14,8 @@ Run threading
 ```
 cargo run -p threading
 ```
+
+Run macros
+```
+cargo run -p macro-time
+```
