@@ -19,3 +19,8 @@ Run macros
 ```
 cargo run -p macro-time
 ```
+
+Run randomland
+```
+cargo run -p randomland
+```

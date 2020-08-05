@@ -6,4 +6,5 @@ members = [
     "macro-time",
     "proc-macro",
     "stuff",
+    "randomland",
 ]
